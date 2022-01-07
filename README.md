@@ -3,8 +3,7 @@ Unit 13-Project1
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
-
-![TODO: Update the path with the name of your diagram](Images/diagram_filename.png)
+![Vnet(Final)EthanMottaz drawio (1)](https://user-images.githubusercontent.com/97130195/148584328-aec0de58-980d-4afe-a9c1-164957f538db.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _yml and config_ file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -27,78 +26,76 @@ Load balancing ensures that the application will be highly _Availble_, in additi
 - _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_Availability, Web Traffic and Web Security
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _Data____ and system _Logs_.
-- _TODO: What does Filebeat watch for?
+- What does Filebeat watch for?
   _data about file systems_
-- _TODO: What does Metricbeat record?
- _machine metric data_
+- What does Metricbeat record?
+  _machine metric data_
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name        | Function     | IP Address  | Operating System |
-|-------------|--------------|-------------|------------------|
-| Jump-Box-   | Gateway      | 10.0.0.4/   | Linux            |
-|Provisioner  |(Continued)   |40.69.136.125|(Continued)       |
-| Web-1       |Web Server    | 10.0.0.5    | Linux            |
-| Web-2       |Web Server    | 10.0.0.6    | Linux            |
-| Web-3Elk    |   ELK        | 10.1.0.4/   | Linux            |
-|(Continued)  |(Continued)   |40.87.111.127|(Continued)       |
-| ClassLB     |Load Balancer |40.77.69.8   | Linux            |
-| Workstation |Access Control|173.28.119.51| Mac              |
+| Name                   | Function     | IP Address            | Operating System |
+|------------------------|--------------|-----------------------|------------------|
+| Jump-Box-  Provisioner | Gateway      | 10.0.0.4/40.69.136.125| Linux            |
+| Web-1                  |Web Server    | 10.0.0.5              | Linux            |
+| Web-2                  |Web Server    | 10.0.0.6              | Linux            |
+| Web-3Elk               |   ELK        | 10.1.0.4/40.87.111.127| Linux            |
+| ClassLB                |Load Balancer |40.77.69.8             | Linux            |
+| Workstation            |Access Control|173.28.119.51          | Mac              |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the _Host_machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+- Add whitelisted IP addresses_
  173.28.119.51 through TCP 5601
 
 Machines within the network can only be accessed by _ Workstation and Jump-Box-Provisioner_.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
- Jump-Box-Provisioner IP : 10.0.0.4 via SSH port 22
-      Workstation        :173.28.119.51 via port TCP 5601
+- Which machine did you allow to access your ELK VM? What was its IP address?_
+ -Jump-Box-Provisioner IP : 10.0.0.4 via SSH port 22
+ -Workstation        :173.28.119.51 via port TCP 5601
       
 A summary of the access policies in place can be found in the table below.
 
-| Name      | Publicly Accessible |        Allowed IP Addresses        |
-|-----------|---------------------|------------------------------------|
-|Jump-Box-  |No                   | 173.28.119.51 on SSH 22            |
-|Provisioner|(Continued)          |(Continued)                         |
-| Web-1     |No                   | 10.0.0.4 on SSH 22                 |
-| Web-2     |No                   | 10.0.0.4 on SSH 22                 |
-| Web-3Elk  |No                   | 173.28.119.51 on SSH 22            |
-| ClassLB   |No                   | 173.28.119.51 on SSH 22            |
+| Name                | Publicly Accessible |        Allowed IP Addresses        |
+|---------------------|---------------------|------------------------------------|
+|Jump-Box-Provisioner |No                   | 173.28.119.51 on SSH 22            |                |Web-1                |No                   | 10.0.0.4 on SSH 22                 |
+| Web-2               |No                   | 10.0.0.4 on SSH 22                 |
+| Web-3Elk            |No                   | 173.28.119.51 on SSH 22            |
+| ClassLB             |No                   | 173.28.119.51 on SSH 22            |
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
- Ansible lets you quickly and easily deploy multitier apps. It is all automated.You list the tasks and can write a playboo. Ansible will do the rest to make sure the systems are how yo want.
+- What is the main advantage of automating configuration with Ansible?_
+-Ansible lets you quickly and easily deploy multitier apps. It is all automated.You list the   tasks and can write a playboo. Ansible will do the rest to make sure the systems are how yo      want.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
+-In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
 - Specify group of machines and user
 - Increase system memory
 - Installs services
 - launchs ports and exposes the ports
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+<img width="1440" alt="Docker-PS-EM" src="https://user-images.githubusercontent.com/97130195/148587400-306be96a-b1b0-4a54-a64d-998680b2d7ae.png">
+
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+-List the IP addresses of the machines you are monitoring_
 
-Web-1 IP: 10.0.0.5
-Web-2 IP: 10.0.0.6
+-Web-1 IP: 10.0.0.5
+-Web-2 IP: 10.0.0.6
+
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Specify which Beats you successfully installed_
 - Filebeat: log events
-  Metricbeat: metric stats and ystem stats
+  Metricbeat: metric stats and system stats
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
-The filebeat collects log events such as 
+Filebeat montiors for log events such as server logs; Metricbeat collects metric data such as MySQL and records it on elastic search. These finding may show up on kibana.
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
