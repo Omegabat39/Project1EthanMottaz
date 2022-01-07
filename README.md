@@ -35,10 +35,10 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Jump Box | Gateway  | 10.0.0.4   | Linux            |
+| Web-1    |          | 10.0.0.5   | Linux            |
+| Web-2    |          | 10.0.0.6   | Linux            |
+| Web-3Elk |          | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
@@ -55,8 +55,8 @@ A summary of the access policies in place can be found in the table below.
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
 | Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Web-1    |                     |                      |
+| Web-2    |                     |                      |
 
 ### Elk Configuration
 
@@ -76,8 +76,8 @@ The following screenshot displays the result of running `docker ps` after succes
 This ELK server is configured to monitor the following machines:
 - _TODO: List the IP addresses of the machines you are monitoring_
 
-Web-1 IP: 10.0.0.
-Web-2 IP: 10.0.0.
+Web-1 IP: 10.0.0.5
+Web-2 IP: 10.0.0.6
 We have installed the following Beats on these machines:
 - _TODO: Specify which Beats you successfully installed_
 
