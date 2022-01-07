@@ -118,3 +118,9 @@ root@bb16ebc0f579:/etc/ansible# curl -L -O https://ansible.com/  > ansible.cfg
 root@bb16ebc0f579:/etc/ansible# nano ansible.cfg
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+
+Work cited for additional information:
+
+Collecting Elasticsearch log data with Filebeat: Elasticsearch guide [7.16]. Elastic. (n.d.). Retrieved January 7, 2022, from https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-filebeat.html 
+
+How metricbeat worksedit. Elastic. (n.d.). Retrieved January 7, 2022, from https://www.elastic.co/guide/en/beats/metricbeat/current/how-metricbeat-works.html 
