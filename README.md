@@ -7,7 +7,7 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _yml and config_ file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+  - Omegabat39/Project1EthanMottaz/Ansible
 
 This document contains the following details:
 - Description of the Topology
@@ -94,8 +94,11 @@ We have installed the following Beats on these machines:
   Metricbeat: metric stats and system stats
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+-In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
 Filebeat montiors for log events such as server logs; Metricbeat collects metric data such as MySQL and records it on elastic search. These finding may show up on kibana.
+(other requested screenshots)
+<img width="1440" alt="Metricbeat-scree shot-EM" src="https://user-images.githubusercontent.com/97130195/148586569-1b9dd71d-f77d-4ea3-9bfa-802208ccb418.png">
+<img width="1440" alt="Filebeat_screenshotEM" src="https://user-images.githubusercontent.com/97130195/148586849-261167ef-57f9-4c82-8eef-d09ac2c17836.png">
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
