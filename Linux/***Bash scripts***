@@ -1,0 +1,371 @@
+0310_Dealers_Loss.sh 
+#!/bin/bash
+echo "March 10"
+awk '/0[58].+ AM|(0[28]|11).+ PM/ {print $1,$2,$5,$6}' 0310_Dealer_schedule
+
+0312_Dealers_Loss.sh
+#!/bin/bash
+echo "March 12"
+awk '/0[58].+ AM|(0[28]|11).+ PM/ {print $1,$2,$5,$6}' 0312_Dealer_schedule
+
+0315_Dealers_Loss.sh  
+#!/bin/bash
+echo "March 15"
+awk '/0[58].+ AM|02.+ PM/ {print $1,$2,$5,$6}' 0315_Dealer_schedule
+
+roulette_dealer_finder_by_time.sh
+#!/bin/bash
+#the time
+time=${2//[!0-9]/}
+#AM/PM
+clock='AM'
+if [[ "$2" == *'p'* ]]; then
+ clock='PM'
+fi
+cat $1_Dealer_schedule | grep $time | grep $clock | awk '{print $1,$2,$5,$6}'
+
+for_loops.sh
+#!/bin/bash
+
+# Create Variables
+nums=$(echo {0..9})
+states=('Nebraska' 'California' 'Texas' 'Hawaii' 'Washington')
+ls_out=$(ls)
+
+execs=$(find /home -type f -perm 777 2>/dev/null)
+
+# Create For Loops
+# Create a loop that prints only 3, 5 and 7
+for num in ${nums[@]}; do
+  if [ $num = 3 ] || [ $num = 5 ] || [ $num = 7 ]; then
+    echo $num
+  fi
+done
+
+# Create a loop that looks for 'Hawaii'
+for state in ${states[@]}; do
+  if [ $state == 'Hawaii' ]; then
+    echo "Hawaii is the best!"
+  else
+    echo "I'm not a fan of Hawaii."
+  fi
+done
+
+# Create a `for` loop that prints out each item in your variable that holds the output of the `ls` command.
+for x in ${ls_out[@]}; do
+  echo $x
+done
+
+# Bonus
+# Create a for loop to print out execs on one line for each entry
+for exec in ${execs[@]}; do
+  echo $exec
+
+done#!/bin/bash
+# Basic if statement
+
+# if [ <condition> ]
+# then
+#   <run_this_command>
+#   <run_this_command>
+#   <run_this_command>
+# fi
+
+# if [ <condition> ]
+# then
+#   <run_this_command>
+# else
+#   <run_this_command>
+# fi
+
+# if [ <condition1> ] && [ <condition2> ]
+# then
+#   <run_this_command>
+# else  
+#   <run_this_command>
+# fi
+
+# if [ <condition1> ] || [ <condition2> ]
+# then
+#   <run_this_command>
+#   <run_this_command>
+#   <run_this_command>
+# fi
+
+# number variables
+x=5
+y=100
+
+# string variables
+str1='this is a string'
+str2='this is different string'
+
+# If $x is equal to $y, run the echo command.
+if [ $x = $y ]
+then 
+  echo "X is equal to Y!"
+fi
+
+# If str1 is not equal to str2, run the echo command and exit the script.
+if [ $str1 != $str2 ]
+then 
+  echo "These strings do not match."
+  echo "Exiting this script."
+  exit
+fi
+
+# If x is greater than y, run the echo command - only works for integer values
+if [ $x -gt $y ]
+then
+  echo "$x is greater than $y".
+fi
+
+# check if x is less than y - only works for integer values
+if [ $x -lt $y ]
+then 
+  echo "$x is less than $y!"
+else
+  echo "$x is not less than $y!"
+fi
+
+# check if $str1 is equal to 'this string' AND $x is greater than $y
+# only works if x and y are integers
+if [ $str1 = 'this string' ] && [ $x -gt $y ]
+then
+  echo "Those strings match and $x is greater than $y!"
+else
+  echo "Either those strings don't match, or $x is not greater than $y"
+fi
+
+# check if $str1 is equal to str2 OR $x is less than $y
+# only works if x and y are integers
+if [ $str1 != $str2 ] || [ $x -lt $y ]
+then
+  echo "Either those strings don't match OR $x is less than $y!"
+else
+  echo "Those strings match, AND $x is not less than $y"
+fi
+
+# check for the /etc directory
+if [ -d /etc ]
+then
+  echo "The /etc directory exists!"
+fi
+
+# check if $str1 is equal to str2 OR $x is less than $y
+# only works if x and y are integers
+if [ $str1 != $str2 ] || [ $x -lt $y ]
+then
+  echo "Either those strings don't match OR $x is less than $y!"
+else
+  echo "Those strings match, AND $x is not less than $y"
+fi
+
+# check for the /etc directory
+if [ -d /etc ]
+then
+  echo "The /etc directory exists!"
+
+fi
+# if the uid of the user running this script does not equal 1000, run the echo command
+if [ $UID -ne 1000 ]
+then
+  echo "Your UID is wrong"
+  exit
+fi
+
+# if sysadmin is running this script, run the echo command
+if [ $(whoami) = 'sysadmin' ]
+then
+  echo "You are sysadmin!"
+fi 
+
+setup_script.sh
+#!/bin/bash
+# Quick setup script for new server.
+#
+# Check for an output file
+if [ ! $1 ]
+then
+    echo "Please specify an output file."
+    exit
+fi
+
+# Make sure the script is run as root.
+if [ ! $UID = 0 ]
+then
+  echo "Please run this script as root."
+  exit
+fi
+
+# Log file header
+echo "Log file for general server setup script." >> $1
+echo "############################" >> $1
+echo "Log generated on: $(date)" >> $1
+echo "############################" >> $1
+echo "" >> $1
+
+# List of packages needed on the System
+packages=(
+  'nano'
+  'wget'
+  'net-tools'
+  'python'
+  'tripwire'
+  'tree'
+  'curl'
+)
+
+# Check for installed packages. If they are not installed, install them.
+for package in ${packages[@]};
+do
+  if [ ! $(which $package) ];
+  then
+    apt install -y $package
+  fi
+done
+
+# Print it out and Log it
+echo "$(date) Installed needed pacakges: ${packages[@]}" | tee -a $1
+
+# Create a sysadmin user with no password (password to be created upon login)
+useradd sysadmin
+chage -d 0 sysadmin
+
+# Print it out and Log it
+echo "$(date) Created sys_admin user. Password to be created upon login" | tee -a $1
+
+# Remove roots login shell and lock the root account.
+usermod -s /sbin/nologin root
+usermod -L root
+
+# Print it out and Log it
+echo "$(date) Disabled root shell. Root user cannot login." | tee -a $1
+
+# Change permissions on sensitive files
+chmod 600 /etc/shadow
+chmod 600 /etc/gshadow
+chmod 644 /etc/group
+chmod 644 /etc/passwd
+
+# Print it out and Log it
+echo "$(date) Changed permissions on sensitive /etc files." | tee -a $1
+
+scripts=/home/sysadmin/scripts
+# Setup scripts folder
+if [ ! -d $scripts ];
+then
+  mkdir $scripts
+  chown sysadmin:sysadmin $scripts
+fi
+
+bashrc=/home/sysadmin/.bashrc
+# Add scripts to .bashrc
+echo "" >> $bashrc
+echo "PATH=$PATH:$scripts" >> $bashrc
+echo "" >> $bashrc
+
+# Print it out and Log it
+echo "$(date) Added ~/scripts directory to sysadmin's PATH." | tee -a $1
+
+# Add custom aliases to $bashrc
+echo "" >> $bashrc
+echo "PATH=$PATH:$scripts" >> $bashrc
+echo "" >> $bashrc
+
+# Print it out and Log it
+echo "$(date) Added ~/scripts directory to sysadmin's PATH." | tee -a $1
+
+# Add custom aliases to $bashrc
+cat >> /home/sysadmin/.bashrc << END
+Custom Aliases
+alias reload='source ~/.bashrc && echo Bash config reloaded'
+alias lsa='ls -a'
+alias docs='cd ~/Documents'
+alias dwn='cd ~/Downloads'
+alias etc='cd /etc'
+alias rc='nano ~/.bashrc'
+END
+
+# Print it out and Log it
+echo "$(date) Added custom alias collection to sysadmin's bashrc." | tee -a $1
+
+#Print out and log Exit
+echo "$(date) Script Finished. Exiting." | tee -a $1
+
+exit
+
+
+sys_info.sh
+#!/bin/bash
+mkdir ~/research 2>/dev/null
+echo "A Quick System Audit Script" >~/research/sys_info.txt
+date >>~/research/sys_info.txt
+echo "" >>~/research/sys_info.txt
+echo "Machine Type Info:" >>~/research/sys_info.txt
+echo $MACHTYPE >>~/research/sys_info.txt
+echo -e "Uname info: $(uname -a) \n" >>~/research/sys_info.txt
+echo -e "IP Info: $(ip addr | grep inet | tail -2 | head -1) \n" >>~/research/sys_info.txt
+echo -e "Hostname: $(hostname -s) \n" >>~/research/sys_info.txt
+echo "DNS Servers:" >>~/research/sys_info.txt
+cat /etc/resolv.conf >>~/research/sys_info.txt
+echo -e "\nMemory Info:" >>~/research/sys_info.txt
+free >>~/research/sys_info.txt
+echo -e "\nCPU Info:" >>~/research/sys_info.txt
+lscpu | grep CPU >>~/research/sys_info.txt
+echo -e "\nDisk Usage:" >>~/research/sys_info.txt
+df -H | head -2 >>~/research/sys_info.txt
+echo -e "\nWho is logged in: \n $(who -a) \n" >>~/research/sys_info.txt
+echo -e "\nExec Files:" >>~/research/sys_info.txt
+find /home -type f -perm 777 >>~/research/sys_info.txt
+echo -e "\nTop 10 Processes" >>~/research/sys_info.txt
+ps aux -m | awk {'print $1, $2, $3, $4, $11'} | head >>~/research/sys_info.txt
+
+ useful_loops.sh
+#!/bin/bash
+
+# Define packages list
+packages=(
+    'nano'
+    'wget'
+    'net-tools'
+)
+
+# loop though the list of packages and show if they are installed
+for package in ${packages[@]};
+do
+    if [ $(which $package) ]
+    then 
+        echo "$package is installed at $(which $package)."
+    else
+        echo "$package is not installed."
+    fi
+done
+
+
+# Search each user's home directory for scripts and provide a formatted output.
+for user in $(ls /home);
+do   
+    for item in $(find /home/$user -iname '*.sh');
+    do 
+        echo -e "Found a script in $user's home folder! \n$item"
+    done
+done
+
+
+# loop through scripts in the scripts folder and change the permissions to execute 
+for script in $(ls ~/scripts);
+do 
+    if [ ! -x ~/scripts/$script ]
+    then
+        chmod +x ~/scripts/$script
+    fi
+done
+
+
+# loop through a group of files and create a hash of each file.
+# we assume files_for_hashing/ exists and contains at least one file
+for file in $(ls ~/Documents/files_for_hashing/);
+do
+    sha256sum $file
+done
