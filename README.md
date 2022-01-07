@@ -108,7 +108,7 @@ SSH into the control node and follow the steps below:
 - Update the _filebeat-playbook.yml_ file to include... curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
 - Run the playbook, and navigate to __Kibana > Logs : Add log data > System logs > 5:Module Status > Check__ to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
+_  Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?
 -  playbook is in root@bb16ebc0f579:/etc/ansible/files/filebeat-config.yml and nano /etc/ansible/roles/filebeat-playbook.yml
 
