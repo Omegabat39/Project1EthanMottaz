@@ -1,9 +1,13 @@
 # Project1EthanMottaz
 Unit 13-Project1
+![Vnet(Final)EthanMottaz drawio](https://user-images.githubusercontent.com/97130195/167510489-3a29de4d-aac6-427f-9150-32b1aa0e5b40.png)
+
+
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
-![Vnet(Final)EthanMottaz drawio (1)](https://user-images.githubusercontent.com/97130195/148584328-aec0de58-980d-4afe-a9c1-164957f538db.png)
+
+
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _yml and config_ file may be used to install only certain pieces of it, such as Filebeat.
 
